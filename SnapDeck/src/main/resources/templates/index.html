@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Card Collection Management</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<style>
+        body {
+            background-color: #f2f2f2;
+        }
+        page-title {
+            text-align: center;
+            padding: 20px 0;
+        }
+        .disclaimer {
+            font-size: 10pt;
+            text-align: center;
+            margin-top: 20px;
+            color: #808080;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container my-2">
+    <div class="page-title">
+            <h1>Marvel Snap Card Collection</h1>
+        </div>
+       
+
+        <a th:href="@{/showNewCardForm}" class="btn btn-primary btn-sm mb-3"> Add Card </a>
+
+        <table border="3" class="table table-striped table-responsive-md">
+            <thead>
+                <tr>
+                    <th> Name</th>
+                    <th> Power</th>
+                    <th> Energy</th>
+                    <th> Ability</th>
+                    <th> Actions </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="card : ${listCards}">
+                    <td><strong th:text="${card.cardName}"></strong></td>
+                    <td th:text="${card.cardEnergy}"></td>
+                    <td th:text="${card.cardPower}"></td>
+                    <td th:text="${card.cardAbility}"></td>
+                    <td> <a th:href="@{/showFormForUpdate/{id}(id=${card.id})}" class="btn btn-primary">Update</a>
+                        <a th:href="@{/deleteCard/{id}(id=${card.id})}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+         <p class="disclaimer">Marvel Snap Card Collection is not affiliated with Marvel or Second Dinner.</p>
+    </div>
+</body>
+
+</html>
